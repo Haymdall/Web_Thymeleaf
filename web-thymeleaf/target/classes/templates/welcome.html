@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie-edge">
+
+    <title>Spring Boot Thymeleaf</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" th:href="@{/css/css_form.asp}"/>
+    
+    <script type="text/javascript" th:src="@{/js/jquery-3.5.1.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/angular.v1.3.3.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/angular-local-storage.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+
+</head>
+
+<body ng-app="AngularApp" ng-controller="Controller">
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">Mkyong.com</a>
+</nav>
+
+<main role="main" class="container">
+
+    <div class="starter-template">
+        <h1>Spring Boot Web Thymeleaf Example</h1>
+        <h2>
+            <span th:text="'Hello, ' + ${message}"></span>
+        </h2>
+    </div>
+
+    <ol>
+        <li th:each="task : ${tasks}" th:text="${task}"></li>
+    </ol>
+    
+    <div style="border-radius:5px;background-color:#55595c;padding:40px;width:400px;height:350px;">
+    	<form class="test">
+    		<label style="color:#ffffff" for="titulo">TITULO</label><br>
+		    <input type="text" id="titulo" name="titulo" placeholder="Titulo..." ng-model="newPost.title"><br><br>
+		    <label style="color:#ffffff" for="comentarios">COMENTARIOS</label>
+			<textarea  name="comentarios" cols="40" rows="5" placeholder="Comentarios..." ng-model="newPost.body"></textarea>
+			<br>
+			<button type="button" class="btn btn-success" ng-click="addPost()">Enviar</button>
+    	</form>
+    </div>
+	
+	<br><br>
+	
+<div class="card mb-3" style="max-width: 700px;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="2d0e035e6f9c10b952a79a0f9a4e0778.gif" class="card-img" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+  </div>
+</div>	
+    
+    <div class="container-fluid">
+    	<div class="row">
+    		<div class="col-md-4" ng-repeat="post in posts">
+    			<div class="card mb-4 shadow-sm">
+    				
+    				<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail">
+    				<title>Post</title>
+    				<rect width="100%" height="100%" fill="#55595c"></rect>
+    				<text x="50%" y="50%" fill="#eceeef" dy=".3em">{{post.title}}</text>
+    				</svg>
+    				
+    				<div class="card-body">
+    					<p class="card-text">
+    						{{post.body}}
+    					</p>
+    				</div>
+    				
+	    		<!-- <div><h2></h2></div>
+	    			<div><p></p></div> -->
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    
+    <br><br>
+    
+    <div class="container">
+    	<div class="row">
+    		<div class="col-6">
+				<h2>Primero</h2>
+    		</div>
+    		<div class="col-6">
+	    		<h2>Segundo</h2>
+	    	</div>
+    	</div>
+    </div>
+    	
+	<div class="w3-row-padding" style="border-radius:5px;background-color:#55595c;padding:40px;width:600px;height:550px;">
+		<div class="w3-example" style="background-color:#55595c;">
+		<br>
+			<h2 style="color:#ffffff">ACTIVIDAD1</h2>
+				<div class="w3-code notraslate cssHigh">
+					<ul>
+						<li style="color:#ffffff" ng-repeat="actividad in todo">
+							{{actividad.descripcion}} - 
+							{{actividad.fecha}}
+						</li>
+					</ul>
+					<br>
+					<form ng-submit="addActv()">
+						<input type="text" ng-model="newActv.descripcion">
+						<input type="datetime-local" ng-model="newActv.fecha"><br><br>
+						<input type="submit" class="btn btn-success" value="Guardar actividad">
+						<button class="btn btn-success" ng-click="todo = []">Limpiar</button>
+					</form>
+				</div>
+				<br>
+				<div class="w3-example" style="background-color:#55595c;">
+					<h2 style="color:#ffffff">ACTIVIDAD2</h2>
+						<div class="w3-code notraslate cssHigh">
+							<ul>
+								<li style="color:#ffffff" ng-repeat="actividad2 in todo2">
+									{{actividad2.descripcion}} - 
+									{{actividad2.fecha}}
+								</li>
+							</ul>
+							<form ng-submit="addActv2()">
+								<input type="text" ng-model="newActv2.descripcion">
+								<input type="datetime-local" ng-model="newActv2.fecha"><br><br>
+								<input type="submit" class="btn btn-success" value="Guardar actividad">
+								<button class="btn btn-success" ng-click="todo2 = []">Limpiar</button>	
+							</form>
+						</div>
+				</div>
+		</div>	
+	</div>
+	
+	<br><br>
+
+</main>
+<!-- /.container -->
+
+<script type="text/javascript" th:src="@{/js/controller.js}"></script>
+
+</body>
+</html>
